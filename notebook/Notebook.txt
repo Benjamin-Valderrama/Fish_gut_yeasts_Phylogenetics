@@ -2,4 +2,4 @@
 
 1. I Fond a sequence of Debaryomyces hansenii in NCBI
 
-2. I conducted an MSA using MEGA. The alignment was curated so only positions with >75% of coverage were kept
+2. I conducted an MSA using MEGA (version 10.2.6). The alignment was curated so only positions with >75% of coverage were kept
