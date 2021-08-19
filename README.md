@@ -1,3 +1,4 @@
-A repository intended to serve as a tool for tracking my learning journey in microbiome analysis using bioinformatics
-
+Title : Phylogenetic Analysis of cultivable yeasts from the gut of two fishes
 Author : Benjamin Valderrama
+
+Here I share all the supplies needed to conduct a phylogenetic analysis of the Yeasts microbiota isolated from the intestinal content of two marine fish from Chile, Genypterus chilensis and Seriolella violacea.
