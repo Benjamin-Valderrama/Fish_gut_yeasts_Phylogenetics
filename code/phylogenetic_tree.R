@@ -13,10 +13,14 @@ sapply(lib, require, character.only = T)
 # Import Multiple Sequence Alignment
 alignment_path <- paste0(getwd(),"/data/processed/sequences_outgroup_alignment.fas")
 alignment <- read.alignment(file = alignment_path, format = "fasta")
-
+alignment_dnabin <- as.DNAbin.alignment(alignment)
 
 # Making the tree ---------------------------------------------------------
+# Calculating distance matrix
+distance_T92 <- dist.dna(x = alignment_dnabin,
+                         model = "T92") # According to the file in the 'exploratory' folder
 
+tree <- ladderize(nj(distance_T92))
 
 
 # Ploting the tree --------------------------------------------------------
