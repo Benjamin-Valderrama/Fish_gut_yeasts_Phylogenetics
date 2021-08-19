@@ -1,0 +1,32 @@
+Table. Maximum Likelihood fits of 24 different nucleotide substitution models
+Model	Parameters	BIC	AICc	lnL	(+I)	(+G)	R	f(A)	f(T)	f(C)	f(G)	r(AT)	r(AC)	r(AG)	r(TA)	r(TC)	r(TG)	r(CA)	r(CT)	r(CG)	r(GA)	r(GT)	r(GC)
+T92+G	72	8393.689	7807.016	-3831.303	n/a	0.37	1.67	0.274	0.274	0.226	0.226	0.051	0.042	0.142	0.051	0.142	0.042	0.051	0.172	0.042	0.172	0.051	0.042
+K2+G	71	8397.746	7819.216	-3838.408	n/a	0.37	1.66	0.250	0.250	0.250	0.250	0.047	0.047	0.156	0.047	0.156	0.047	0.047	0.156	0.047	0.156	0.047	0.047
+TN93+G	75	8399.219	7788.119	-3818.837	n/a	0.38	1.71	0.289	0.260	0.191	0.261	0.047	0.034	0.101	0.052	0.182	0.047	0.052	0.247	0.047	0.111	0.047	0.034
+T92+G+I	73	8403.436	7808.620	-3831.099	0.32	0.87	1.66	0.274	0.274	0.226	0.226	0.051	0.042	0.141	0.051	0.141	0.042	0.051	0.172	0.042	0.172	0.051	0.042
+TN93+G+I	76	8405.310	7786.067	-3816.805	0.31	0.85	1.71	0.289	0.260	0.191	0.261	0.047	0.034	0.100	0.052	0.182	0.047	0.052	0.247	0.047	0.111	0.047	0.034
+K2+G+I	72	8407.075	7820.402	-3837.996	0.35	0.97	1.65	0.250	0.250	0.250	0.250	0.047	0.047	0.156	0.047	0.156	0.047	0.047	0.156	0.047	0.156	0.047	0.047
+T92+I	72	8413.296	7826.623	-3841.106	0.53	n/a	1.56	0.274	0.274	0.226	0.226	0.053	0.044	0.138	0.053	0.138	0.044	0.053	0.168	0.044	0.168	0.053	0.044
+K2+I	71	8415.467	7836.936	-3847.269	0.53	n/a	1.57	0.250	0.250	0.250	0.250	0.049	0.049	0.153	0.049	0.153	0.049	0.049	0.153	0.049	0.153	0.049	0.049
+GTR+G	78	8418.031	7782.505	-3813.012	n/a	0.38	1.69	0.289	0.260	0.191	0.261	0.064	0.030	0.102	0.071	0.181	0.049	0.045	0.246	0.029	0.113	0.049	0.021
+TN93+I	75	8418.383	7807.283	-3828.419	0.51	n/a	1.57	0.289	0.260	0.191	0.261	0.049	0.036	0.105	0.055	0.168	0.050	0.055	0.229	0.050	0.117	0.049	0.036
+HKY+G	74	8420.142	7817.184	-3834.375	n/a	0.37	1.71	0.289	0.260	0.191	0.261	0.048	0.035	0.164	0.053	0.120	0.048	0.053	0.163	0.048	0.182	0.048	0.035
+GTR+G+I	79	8426.469	7782.802	-3812.154	0.34	0.98	1.68	0.289	0.260	0.191	0.261	0.064	0.030	0.101	0.071	0.181	0.050	0.045	0.247	0.028	0.112	0.050	0.021
+HKY+G+I	75	8429.929	7818.829	-3834.192	0.32	0.86	1.71	0.289	0.260	0.191	0.261	0.048	0.035	0.164	0.054	0.120	0.048	0.054	0.163	0.048	0.181	0.048	0.035
+GTR+I	78	8437.588	7802.062	-3822.790	0.52	n/a	1.56	0.289	0.260	0.191	0.261	0.068	0.030	0.106	0.076	0.169	0.053	0.045	0.230	0.030	0.118	0.053	0.022
+HKY+I	74	8439.844	7836.886	-3844.226	0.53	n/a	1.60	0.289	0.260	0.191	0.261	0.050	0.037	0.160	0.056	0.117	0.050	0.056	0.159	0.050	0.177	0.050	0.037
+JC+G	70	8534.963	7964.575	-3912.094	n/a	0.40	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+JC+G+I	71	8543.478	7964.947	-3911.274	0.37	1.21	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+JC+I	70	8547.463	7977.075	-3918.344	0.52	n/a	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+TN93	74	8657.634	8054.676	-3953.121	n/a	n/a	1.35	0.289	0.260	0.191	0.261	0.054	0.040	0.099	0.060	0.158	0.054	0.060	0.215	0.054	0.110	0.054	0.040
+T92	71	8663.785	8085.254	-3971.428	n/a	n/a	1.35	0.274	0.274	0.226	0.226	0.058	0.048	0.130	0.058	0.130	0.048	0.058	0.158	0.048	0.158	0.058	0.048
+K2	70	8668.467	8098.079	-3978.846	n/a	n/a	1.35	0.250	0.250	0.250	0.250	0.053	0.053	0.143	0.053	0.143	0.053	0.053	0.143	0.053	0.143	0.053	0.053
+GTR	77	8677.542	8050.158	-3947.845	n/a	n/a	1.35	0.289	0.260	0.191	0.261	0.069	0.033	0.100	0.076	0.159	0.061	0.050	0.217	0.036	0.111	0.061	0.027
+HKY	73	8692.354	8097.538	-3975.558	n/a	n/a	1.34	0.289	0.260	0.191	0.261	0.056	0.041	0.149	0.062	0.109	0.056	0.062	0.148	0.056	0.165	0.056	0.041
+JC	69	8783.674	8221.430	-4041.526	n/a	n/a	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+NOTE.-- Models with the lowest BIC scores (Bayesian Information Criterion) are considered to describe the substitution pattern the best. For each model, AICc value (Akaike Information Criterion, corrected), Maximum Likelihood value (lnL), and the number of parameters (including branch lengths) are also presented [1]. Non-uniformity of evolutionary rates among sites may be modeled by using a discrete Gamma distribution (+G) with 5 rate categories and by assuming that a certain fraction of sites are evolutionarily invariable (+I). Whenever applicable, estimates of gamma shape parameter and/or the estimated fraction of invariant sites are shown.Assumed or estimated values of transition/transversion bias (R) are shown for each model, as well. They are followed by nucleotide frequencies (f) and rates of base substitutions (r) for each nucleotide pair.Relative values of instantaneous r should be considered when evaluating them. For simplicity, sum of r values is made equal to 1 for each model. For estimating ML values, a tree topology was automatically computed. This analysis involved 36 nucleotide sequences. There were a total of 785 positions in the final dataset. Evolutionary analyses were conducted in MEGA X [2] 
+
+Abbreviations: TR: General Time Reversible; HKY: Hasegawa-Kishino-Yano; TN93: Tamura-Nei; T92: Tamura 3-parameter; K2: Kimura 2-parameter; JC: Jukes-Cantor./div> 
+1. Nei M. and Kumar S. (2000). Molecular Evolution and Phylogenetics. Oxford University Press, New York.
+2. Kumar S., Stecher G., Li M., Knyaz C., and Tamura K. (2018). MEGA X: Molecular Evolutionary Genetics Analysis across computing platforms. Molecular Biology and Evolution 35:1547-1549.
+Disclaimer: Although utmost care has been taken to ensure the correctness of the caption, the caption text is provided "as is" without any warranty of any kind. Authors advise the user to carefully check the caption prior to its use for any purpose and report any errors or problems to the authors immediately (www.megasoftware.net). In no event shall the authors and their employers be liable for any damages, including but not limited to special, consequential, or other damages. Authors specifically disclaim all other warranties expressed or implied, including but not limited to the determination of suitability of this caption text for a specific purpose, use, or application.
