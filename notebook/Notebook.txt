@@ -1,8 +1,9 @@
 # 16-August-2021
 
-1. I Fond a sequence of Debaryomyces hansenii in NCBI
+1. I Fond a sequence of Debaryomyces hansenii in NCBI to use it as an outgroup
 
 2. I conducted an MSA using MEGA (version 10.2.6). The alignment was curated so only positions with >75% of coverage were kept
+
 
 # 19-Aug-2021
 
@@ -14,10 +15,11 @@
 	- It is obvious that the data itself won't allow me to make a reliable identification of the yeast at deep taxonomic levels. 
 	- My phylogenetic tree is coherent with the one depicted in the paper, altough they use different substitution models. I need to check the differences between K80 and T92.
 
+
 # 20-Aug-2021
 
-1. I did another MSA without outgroups
+1. I did another MSA without outgroup
 
 2. I found a workflow for tree construction in R using phangorn and ape. I used it.
 
-3. I constructed a phylogenetic tree using distance methods and bootstrap to support the nodes. 
+3. I constructed a phylogenetic tree using distance methods (with UPGMA algorithm) and bootstrap to support the nodes.
