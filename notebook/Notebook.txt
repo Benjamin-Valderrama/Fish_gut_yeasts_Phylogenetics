@@ -30,3 +30,8 @@
 1. The bootstrap was done and added to the phylogenetic tree
 
 2. A provisional tree was ploted and the results seems good to me
+
+
+# 26-Aug-2021
+
+1. I make a function to change the tip names. Now they are named as the codes used in the paper or with the binomial name of the sequence as annotated in the NCBI
