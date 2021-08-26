@@ -10,5 +10,7 @@ All sequences can be found in the GenBank database under the accession codes MW5
 ## Content
 
 **code :** The R code used to produce the results
+
 **data :** The data before and after the MSA
+
 **notebook :** A laboratoy notebook in a '.txt' file
