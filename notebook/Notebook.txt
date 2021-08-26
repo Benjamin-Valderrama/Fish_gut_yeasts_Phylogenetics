@@ -23,3 +23,10 @@
 2. I found a workflow for tree construction in R using phangorn and ape. I used it.
 
 3. I constructed a phylogenetic tree using distance methods (with UPGMA algorithm) and bootstrap to support the nodes.
+
+
+# 25-Aug-2021
+
+1. The bootstrap was done and added to the phylogenetic tree
+
+2. A provisional tree was ploted and the results seems good to me
