@@ -22,12 +22,16 @@ best_model <- model_test$Model[which.min(model_test$AICc)]
 
 # Distance matrix
 dist_matrix_JC <- dist.ml(x = MSA_phydat)
+
 treeUPGMA<- upgma(dist_matrix_JC)
+treeNJ<- NJ(dist_matrix_JC)
+
 treeUPGMA <- ladderize(treeUPGMA)
+treeNJ<- ladderize(treeNJ)
 
 # Basic tree plot
 plot(treeUPGMA)
-
+plot(treeNJ)
 
 # Bootstrap ---------------------------------------------------------------
 set.seed(1)
@@ -45,9 +49,44 @@ plotBS(tree = midpoint(fitGTR$tree),
 
 
 # Metadata ----------------------------------------------------------------
-fitGTR$tree$tip.label 
-# Check... plot.phylo
 
+# Changing the tip names to codes of the study and binomial names
+my.tip.label <- fitGTR$tree$tip.label
+
+# Home made function to change the names
+rename.label <- function(x){
+  # All tip labels are splited by its spaces
+  splited_names <- strsplit(x = my.tip.label, split = " ")
+  
+  final.names <- c()
+  # For each splited name, we ask whether they have just 2 elements or more
+  for (i in 1:length(splited_names)) {
+    # If the have just 2 elements, this sequence is part of the initial study
+    if (lengths(splited_names[i]) == 2) {
+      # We save the first element as part of the final list of tip names
+      study.name <- splited_names[[i]][1]
+      final.names <- c(final.names, study.name)
+    } # If not, they are from the NCBI
+    else{
+      # We keep the second and third element as part of the final list of tip names
+      ncbi.names <- paste(splited_names[[i]][2], splited_names[[i]][3])
+      final.names <- c(final.names, ncbi.names)
+    }
+  }
+  return(final.names)
+} 
+
+# Changing the names using the already made function
+fitGTR$tree$tip.label <- rename.label(my.tip.label)
+
+# If we look at the provisional plot, now tha names are changed
+plotBS(tree = midpoint(fitGTR$tree), 
+       BStrees = bs,
+       p = 50,
+       type= "phylogram",
+       bs.col = "gray50")
+
+# Check... plot.phylo
 
 
 # Plot personalization ----------------------------------------------------
