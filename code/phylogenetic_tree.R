@@ -1,31 +1,42 @@
 # Set up ------------------------------------------------------------------
-# Libraries we will use
-lib <- c("seqinr", "ape", "tidyverse", "phangorn")
+
+# Libraries we will use from CRAN
+.cran <- c("ape", "phangorn", "dplyr", "stringr")
 # Installing those we haven't installed yet
-inst <- !lib %in% installed.packages()
-sapply(lib[inst], install.packages, character.only = T)
+.to_inst_cran <- !.cran %in% installed.packages()
+sapply(.cran[.to_inst_cran], install.packages, character.only = T)
+
+
+# Libraries we will use from Bioconductor
+.bioconductor <- c("BiocManager", "ggtree")
+# Installing those we haven't installed yet
+.to_inst_bioconductor <- !.bioconductor %in% installed.packages()
+sapply(.bioconductor[.to_inst_bioconductor], install.packages, character.only = T)
+
+
 # Loading the libraries
-sapply(lib, require, character.only = T)
+sapply(c(.cran, .bioconductor), library, character.only = T)
+
 
 
 # Importing data ----------------------------------------------------------
+
 MSA_path <- paste0(getwd(),"/data/processed/MSA_outgroup.fas")
 MSA <- read.FASTA(file = MSA_path)
 MSA_phydat <- phyDat(MSA, type = "DNA", levels = NULL)
 
 
+
 # Basic tree (distance methods) -------------------------------------------
-# We test all the models to find the best
-model_test <- modelTest(MSA_phydat)
-# We keep the best model (the one with the lowest AICc score)
-best_model <- model_test$Model[which.min(model_test$AICc)]
 
 # Distance matrix
 dist_matrix_JC <- dist.ml(x = MSA_phydat)
 
+# Joining algorithms
 treeUPGMA<- upgma(dist_matrix_JC)
 treeNJ<- NJ(dist_matrix_JC)
 
+# Ladderization
 treeUPGMA <- ladderize(treeUPGMA)
 treeNJ<- ladderize(treeNJ)
 
@@ -33,65 +44,101 @@ treeNJ<- ladderize(treeNJ)
 plot(treeUPGMA)
 plot(treeNJ)
 
-# Bootstrap ---------------------------------------------------------------
-set.seed(1)
-fit <- pml(tree = treeUPGMA, data = MSA_phydat, model = best_model)
-fitGTR <- optim.pml(fit)
-bs <- bootstrap.pml(fitGTR, bs=1000, optNni=TRUE,
-                   control = pml.control(trace = 0))
-
-# Plot provisional
-plotBS(tree = midpoint(fitGTR$tree), 
-       BStrees = bs,
-       p = 50,
-       type= "phylogram",
-       bs.col = "gray50")
 
 
-# Metadata ----------------------------------------------------------------
+# Adding metadata ---------------------------------------------------------
 
-# Changing the tip names to codes of the study and binomial names
-my.tip.label <- fitGTR$tree$tip.label
+# Converting the tree to tibble to add the metadata
+treebble <- as_tibble(treeUPGMA)
 
-# Home made function to change the names
-rename.label <- function(x){
-  # All tip labels are splited by its spaces
-  splited_names <- strsplit(x = my.tip.label, split = " ")
-  
-  final.names <- c()
-  # For each splited name, we ask whether they have just 2 elements or more
-  for (i in 1:length(splited_names)) {
-    # If the have just 2 elements, this sequence is part of the initial study
-    if (lengths(splited_names[i]) == 2) {
-      # We save the first element as part of the final list of tip names
-      study.name <- splited_names[[i]][1]
-      final.names <- c(final.names, study.name)
-    } # If not, they are from the NCBI
-    else{
-      # We keep the second and third element as part of the final list of tip names
-      ncbi.names <- paste(splited_names[[i]][2], splited_names[[i]][3])
-      final.names <- c(final.names, ncbi.names)
-    }
-  }
-  return(final.names)
-} 
+#' Things to do:
+#' 1. Change tip names
+#' 2. Adding the source of the sequence
+#' 3. Adding a color for each source 
 
-# Changing the names using the already made function
-fitGTR$tree$tip.label <- rename.label(my.tip.label)
 
-# If we look at the provisional plot, now tha names are changed
-plotBS(tree = midpoint(fitGTR$tree), 
-       BStrees = bs,
-       p = 50,
-       type= "phylogram",
-       bs.col = "gray50")
+# 1. Change tip names
+length_of_labels <- sapply(str_split(treebble$label, " "), length)
 
-# Check... plot.phylo
+treebble <- treebble %>% 
+    # Label will have the ID of the sequence
+    mutate(label = ifelse(length_of_labels == 2, 
+                        word(treebble$label, 1, 1), # Experimental ID
+                        word(treebble$label, 2,3))) # Genus and Specie ID from NCBI
+
+
+#' Things to do:
+#' 1. Changin tip names [DONE]
+#' 2. Adding the source of the sequence
+#' 3. Adding a color for each source 
+
+
+# 2. Adding the source of the sequence
+treebble <- treebble %>% 
+  mutate(source = case_when(as.numeric(label) <= 300 ~ "S. violacea",
+                            as.numeric(label) > 300 ~ "G. chilensis",
+                            str_detect(label, "[^0-9]") ~ "NCBI",
+                            TRUE ~ "NA"),
+         source = ifelse(source == "NA", NA, source))
+
+
+#' Things to do:
+#' 1. Changin tip names [DONE]
+#' 2. Adding the source of the sequence [DONE]
+#' 3. Adding a color for each source 
+
+
+# 3. Adding a color for each source 
+treebble <- treebble %>% 
+  mutate(color = case_when(as.numeric(label) <= 300 ~ "blue",
+                           as.numeric(label) > 300 ~ "orange",
+                           str_detect(label, "[^0-9]") ~ "black",
+                           TRUE ~ "NA"),
+         color = ifelse(source == "NA", NA, color))
+
+
+#' Things to do:
+#' 1. Changin tip names [DONE]
+#' 2. Adding the source of the sequence [DONE]
+#' 3. Adding a color for each source [DONE]
+
+
+# Back convertion from tibble to tree
+final_treeUPGMA<- as.treedata(treebble)
+
 
 
 # Plot personalization ----------------------------------------------------
 
+source <- final_treeUPGMA@data$source
+
+ggtree(final_treeUPGMA) +
+  
+  geom_treescale() + 
+  geom_tiplab(aes(color = source), size = 5, fontface = "bold", show.legend = FALSE) + 
+  geom_tippoint(aes(color = source), size = 2, alpha = 0.6) +
+  
+  scale_color_manual(values = c("Black", "Orange", "Blue"), 
+                     labels = c("NCBI", "S. violacea", "G. chilensis")) +
+  
+  scale_x_continuous(limits = c(0,0.19)) +
+  
+  theme(legend.position = "bottom",
+        legend.text = element_text(face = "bold", size = 18),
+        legend.title = element_blank(),
+        legend.key.size = unit(2, "cm")) +
+  
+  guides(colour = guide_legend(override.aes = list(size = 8)))
+
 
 
 # Sesion information ------------------------------------------------------
+
 sessionInfo()
+
+
+
+
+# Bootstrap ---------------------------------------------------------------
+
+# Adding bootstrap to the plot
