@@ -178,7 +178,7 @@ ggtree(final_treeUPGMA) +
             color = final_treeUPGMA@data$bootstrap.cols,
             hjust = 1.2, vjust = -0.5) +
   
-  scale_color_manual(values = c("Black", "Orange", "Blue"), 
+  scale_color_manual(values = c("Orange", "Black", "Blue"), 
                      labels = c("NCBI", "S. violacea", "G. chilensis")) +
   
   scale_x_continuous(limits = c(0,0.19)) +
