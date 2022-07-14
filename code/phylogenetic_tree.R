@@ -1,7 +1,19 @@
+
+# Ensure reproducibility --------------------------------------------------
+
+#' I the renv.lock file you can find the list of the packages 
+#' (and their versions) used in this project.
+#' 
+#' To install and load all these packages, you can install the renv
+#' package, load it with library() and call :
+#' 
+#' renv::restore()
+
+
 # Set up ------------------------------------------------------------------
 
 # Libraries we will use from CRAN
-.cran <- c("ape", "phangorn", "dplyr", "stringr", "ggplot2")
+.cran <- c("ape", "phangorn", "dplyr", "stringr", "ggplot2", "renv")
 # Installing those we haven't installed yet
 .to_inst_cran <- !.cran %in% installed.packages()
 sapply(.cran[.to_inst_cran], install.packages, character.only = T)
@@ -178,8 +190,8 @@ ggtree(final_treeUPGMA) +
             color = final_treeUPGMA@data$bootstrap.cols,
             hjust = 1.2, vjust = -0.5) +
   
-  scale_color_manual(values = c("Orange", "Black", "Blue"), 
-                     labels = c("NCBI", "S. violacea", "G. chilensis")) +
+  scale_color_manual(values = c("Blue", "Black", "Orange"), 
+                     labels = c("G. chilensis", "NCBI", "S. violacea")) +
   
   scale_x_continuous(limits = c(0,0.19)) +
   
