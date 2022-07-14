@@ -59,6 +59,9 @@ plot(treeNJ)
 
 # Bootstrap ---------------------------------------------------------------
 
+# Set the seed
+set.seed(1997)
+
 # Calculating bootstrap values
 fit <- pml(tree = treeUPGMA, data = MSA_phydat, model = "JC69") # Try with other models
 
